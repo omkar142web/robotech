@@ -1,0 +1,452 @@
+You are a **senior product designer + frontend engineer** specializing in exceptional modern web interfaces.
+
+I have attached the current RoboTech Robotics Club website HTML.
+
+Your task is to **completely redesign and rebuild the website UI from scratch**.
+
+Do NOT simply restyle the existing page.
+
+Treat the current website as a **content/reference source**, but create a substantially better visual system, layout, hierarchy, interactions, and overall experience.
+
+## PRIMARY GOAL
+
+Create a website that feels like a **premium modern robotics/technology organization**, not a typical college club website.
+
+The design should be:
+
+* Minimal
+* Clean
+* Modern
+* Premium
+* Technical
+* Confident
+* Spacious
+* Highly readable
+* Visually memorable
+* Responsive
+* Fast
+
+Think **high-end technology/product website**, rather than a generic portfolio or university template.
+
+The interface should communicate:
+
+> "These students actually build things."
+
+Avoid the common "robotics website" look:
+
+* No excessive neon
+* No random glowing effects everywhere
+* No cheesy robot illustrations
+* No excessive gradients
+* No unnecessary glassmorphism
+* No huge walls of text
+* No emoji-based UI
+* No generic card-grid-everywhere layout
+* No template-looking sections
+
+Use visual restraint.
+
+---
+
+# CONTENT
+
+Use the attached HTML as the source of truth for the existing website's information.
+
+You may rewrite and shorten the copy to make it substantially more concise and UI-friendly.
+
+The content should communicate:
+
+* Who RoboTech is
+* What the club does
+* What members build
+* Projects
+* Events
+* Team
+* Why someone should join
+* Contact / joining
+
+Do NOT invent important facts, achievements, sponsors, statistics, awards, partnerships, or projects that aren't present in the source.
+
+You may improve wording, hierarchy, and presentation.
+
+---
+
+# INFORMATION ARCHITECTURE
+
+You are NOT required to preserve the existing section structure.
+
+In fact, I want you to reconsider it.
+
+The existing site contains sections such as:
+
+* Home
+* About
+* What We Do
+* How We Build
+* Projects
+* Why Join
+* Events
+* Activities
+* Team
+* Vision
+* Contact
+
+Combine, remove, or restructure sections where appropriate.
+
+The final site should feel **shorter and more intentional**, even if all important information remains available.
+
+Avoid making every piece of information its own giant section.
+
+For example, "How We Build" could become a compact visual process within another section rather than a full-page section.
+
+---
+
+# HERO
+
+Create a highly polished hero section.
+
+It should immediately communicate what RoboTech is.
+
+Use a strong headline such as:
+
+"Build. Innovate. Automate."
+
+or improve it if you have a better idea.
+
+Supporting copy should be short.
+
+The hero should have:
+
+* Strong typography
+* Excellent spacing
+* Clear CTA hierarchy
+* Subtle technical visual language
+* A memorable visual element
+
+The visual should feel connected to robotics/hardware/engineering.
+
+Do NOT use a generic stock-style robot image.
+
+Prefer an elegant technical visualization, abstract mechanical geometry, circuit-inspired system, interactive schematic, or similarly sophisticated visual treatment.
+
+---
+
+# VISUAL DIRECTION
+
+Build a coherent design system.
+
+### Typography
+
+Use a modern, highly readable font pairing.
+
+Create strong hierarchy between:
+
+* Eyebrow text
+* Headlines
+* Section headings
+* Body copy
+* Metadata
+* Buttons
+
+Large typography is welcome, but don't make everything enormous.
+
+### Color
+
+Use a restrained palette.
+
+Prefer:
+
+* Near-black / charcoal
+* White / off-white
+* One carefully selected accent color
+
+The accent should feel technological without becoming stereotypically "cyberpunk."
+
+Do not use many competing accent colors.
+
+### Layout
+
+Use:
+
+* Generous whitespace
+* Strong alignment
+* Consistent max-widths
+* Intentional asymmetry where useful
+* Clear visual rhythm
+* Interesting section transitions
+
+Don't make every section look like:
+
+heading → paragraph → 3 cards → heading → paragraph → 3 cards.
+
+Create visual variety.
+
+---
+
+# PROJECTS
+
+Projects should be one of the strongest parts of the website.
+
+Current projects include:
+
+* Line Following Robot
+* Obstacle Avoiding Robot
+* Robotic Arm
+
+Present them as actual engineering projects rather than generic cards.
+
+For each project, prioritize:
+
+* Project name
+* Short description
+* Technology / concept
+* Visual representation
+* View project action
+
+Use large visual areas where appropriate.
+
+If no real project images exist, create elegant placeholder visualizations using CSS/SVG rather than stock imagery.
+
+Make the project section feel like a **showcase**.
+
+---
+
+# EVENTS
+
+Make events compact and easy to scan.
+
+Current events:
+
+* Robotics Workshop — Oct 15, 2026
+* Robo Race — Nov 8, 2026
+* Tech Exhibition — Dec 20, 2026
+
+Do not create unnecessarily large cards.
+
+A timeline, editorial list, schedule-style layout, or similarly refined presentation may work better.
+
+---
+
+# TEAM
+
+Make the team section feel human but minimal.
+
+Current team:
+
+Alex Smith — President
+Jordan Patel — Technical Lead
+Sam Rivera — Programming Lead
+Maya Kim — Events Coordinator
+
+Do not fabricate biographies.
+
+Use initials/placeholders if there are no actual photos.
+
+---
+
+# JOIN / CONTACT
+
+The website should have a clear conversion moment.
+
+Instead of repeatedly saying "Join Us" throughout the site, create one strong invitation.
+
+Something like:
+
+"Build something real."
+
+or a better alternative.
+
+Make it obvious how someone can get involved.
+
+Keep the form simple:
+
+* Name
+* Email
+* Message
+* Join the Club
+
+---
+
+# MICRO-INTERACTIONS
+
+Use subtle, purposeful interactions.
+
+Examples:
+
+* Smooth hover transitions
+* Project image movement
+* Button interactions
+* Scroll reveal
+* Active navigation state
+* Subtle technical animations
+* Cursor interactions where appropriate
+
+But:
+
+**Do not animate everything.**
+
+Animations should improve the experience, not distract from it.
+
+Prioritize:
+
+* Performance
+* Smoothness
+* Accessibility
+* Reduced-motion support
+
+---
+
+# RESPONSIVE DESIGN
+
+The site must be genuinely responsive.
+
+Design deliberately for:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+Do not simply shrink the desktop layout.
+
+Pay special attention to:
+
+* Navigation
+* Hero composition
+* Typography
+* Project layouts
+* Form inputs
+* Touch targets
+* Horizontal overflow
+
+---
+
+# NAVIGATION
+
+Create a polished navigation system.
+
+Desktop navigation should be minimal.
+
+Mobile navigation should be intentionally designed rather than being a generic hamburger menu.
+
+Consider a sticky/floating navigation if it improves the experience.
+
+The navigation should never visually compete with the hero.
+
+---
+
+# FOOTER
+
+Keep the footer minimal.
+
+Include only useful information:
+
+* RoboTech
+* Short description
+* Important links
+* Social links
+* Copyright
+
+Do not repeat the entire website in the footer.
+
+---
+
+# CODE QUALITY
+
+You are rebuilding the UI, not just producing a visual mockup.
+
+Write production-quality frontend code.
+
+Requirements:
+
+* Semantic HTML
+* Clean CSS architecture
+* Maintainable JavaScript
+* Responsive layout
+* Accessible controls
+* Keyboard navigation
+* Proper focus states
+* Reduced-motion support
+* No unnecessary dependencies
+* Avoid duplicated CSS/JS
+* Avoid hacks
+* Avoid excessive inline styles
+
+Preserve existing functionality unless there is a strong reason to improve it.
+
+---
+
+# IMPORTANT: DESIGN DECISIONS
+
+Do not blindly follow my existing implementation.
+
+You have permission to:
+
+* Change layouts
+* Merge sections
+* Remove visual clutter
+* Rewrite copy
+* Change typography
+* Change spacing
+* Change navigation
+* Change card structures
+* Introduce new visual patterns
+* Replace SVG illustrations
+* Create new interaction patterns
+
+The objective is the **best possible website**, not preservation of the current design.
+
+However, do not remove meaningful information simply because it is inconvenient to design.
+
+---
+
+# QUALITY BAR
+
+Before finishing, review the result as if you were judging it against a professionally designed technology website.
+
+Ask yourself:
+
+1. Does this look like a real robotics organization?
+2. Does it feel premium rather than like a student template?
+3. Is the visual hierarchy immediately obvious?
+4. Is there too much text?
+5. Are there too many cards?
+6. Does every section have a reason to exist?
+7. Is the hero memorable?
+8. Are projects visually dominant?
+9. Does the page have enough whitespace?
+10. Does anything feel generic?
+11. Are animations subtle and intentional?
+12. Does mobile feel designed rather than adapted?
+13. Is the website visually cohesive from top to bottom?
+
+If something feels generic, redesign it.
+
+If something can be simplified without losing meaning, simplify it.
+
+If a section doesn't contribute meaningfully to the experience, merge it or remove it.
+
+---
+
+# MOST IMPORTANT
+
+I do NOT want a "better version of the existing UI."
+
+I want a **completely new visual concept** built from the same underlying content.
+
+Think like you have been given the content of an old website and asked:
+
+> "Now design what the RoboTech website should have looked like if it were built today by an excellent product-design team."
+
+Take that approach.
+
+**Do not explain your design before implementing it.**
+
+First inspect the attached HTML carefully, understand its content and functionality, then rebuild the website.
+
+After implementation, briefly explain:
+
+* What you changed
+* The new design direction
+* Major UX improvements
+* Any content/sections you merged or reorganized

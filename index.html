@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RoboTech — Build. Innovate. Automate.</title>
+<meta name="description" content="RoboTech is a student-led robotics community turning ideas into real-world machines. Learn, build, compete and collaborate." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111214'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23FF4D00' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%23fff'/%3E%3C/svg%3E" />
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F7F6F2;
+  --paper-2:#FFFFFF;
+  --ink:#111214;
+  --ink-2:#1A1D20;
+  --ink-3:#23272B;
+  --muted:#63676E;
+  --muted-2:#8A8F97;
+  --line:#E4E1D9;
+  --line-dark:#2A2E33;
+  --accent:#FF4D00;
+  --accent-ink:#C93A00;
+  --radius:14px;
+  --radius-s:8px;
+  --max:1200px;
+  --font-display:"Inter Tight",Inter,system-ui,sans-serif;
+  --font-body:Inter,system-ui,-apple-system,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.22,.61,.21,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+body{
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--ink);color:var(--paper)}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+section{scroll-margin-top:84px}
+
+/* focus */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* skip */
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:10px 18px;z-index:200;border-radius:0 0 8px 0;font-size:.9rem}
+.skip:focus{left:0}
+
+/* ============ NAV ============ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background .3s var(--ease),border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav.scrolled{background:rgba(247,246,242,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-display);font-weight:700;letter-spacing:.04em;font-size:1.05rem}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center;flex:none}
+.brand em{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;font-size:.92rem;font-weight:500;color:#3A3E44;position:relative;padding:6px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--accent);transition:width .25s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:.95rem;text-decoration:none;border-radius:999px;padding:13px 24px;border:1px solid transparent;cursor:pointer;transition:transform .2s var(--ease),background .2s,border-color .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#000;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:#CFCBC0}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--paper)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:#E04400}
+.btn-sm{padding:10px 18px;font-size:.88rem}
+.btn .arr{transition:transform .2s var(--ease)}
+.btn:hover .arr{transform:translate(2px,-2px)}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);background:var(--paper-2);border-radius:10px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--ink);transition:transform .3s var(--ease),opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* mobile overlay */
+.m-menu{position:fixed;inset:0;z-index:99;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 28px 28px;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .35s var(--ease),transform .35s var(--ease),visibility .35s}
+.m-menu.open{opacity:1;visibility:visible;transform:none}
+.m-menu nav ul{list-style:none;display:flex;flex-direction:column}
+.m-menu nav a{display:flex;align-items:baseline;gap:14px;text-decoration:none;padding:14px 0;border-top:1px solid var(--line-dark);font-family:var(--font-display);font-size:clamp(1.7rem,7vw,2.4rem);font-weight:600;letter-spacing:-.02em;opacity:0;transform:translateY(14px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+.m-menu.open nav a{opacity:1;transform:none}
+.m-menu nav a small{font-family:var(--font-mono);font-size:.75rem;color:var(--muted-2)}
+.m-menu nav a:hover{color:var(--accent)}
+.m-menu-foot{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:18px;border-top:1px solid var(--line-dark);font-family:var(--font-mono);font-size:.78rem;color:#B9BEC6}
+
+/* ============ TYPE SYSTEM ============ */
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent);flex:none}
+.eyebrow .n{color:var(--accent)}
+h1,h2{font-family:var(--font-display);letter-spacing:-.03em;line-height:1.02;font-weight:650}
+.lede{color:var(--muted);font-size:1.08rem;max-width:56ch}
+.on-dark .eyebrow{color:#9AA0A8}
+.on-dark .lede{color:#B9BEC6}
+
+/* ============ HERO ============ */
+.hero{padding:148px 0 0;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(to right,rgba(17,18,20,.055) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,18,20,.055) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 35%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 35%,transparent 78%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:end}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--paper-2);border-radius:999px;padding:7px 14px 7px 8px;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.06em;color:#3A3E44;margin-bottom:22px}
+.dot{width:8px;height:8px;border-radius:50%;background:#1DB954;box-shadow:0 0 0 4px rgba(29,185,84,.16);flex:none}
+.hero h1{font-size:clamp(3rem,6.6vw,5.4rem)}
+.hero h1 .thin{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.hero h1 .acc{color:var(--accent)}
+.hero-sub{margin-top:20px;font-size:1.14rem;color:#2E3238;max-width:46ch}
+.hero-sub strong{font-weight:600}
+.hero-ctas{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:0;margin-top:36px;border-top:1px solid var(--line)}
+.hero-meta div{padding:16px 28px 0 0;margin-right:28px;border-right:1px solid var(--line)}
+.hero-meta div:last-child{border:0}
+.hero-meta b{display:block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;color:var(--muted-2);font-weight:500;margin-bottom:4px}
+.hero-meta span{font-weight:600;font-size:.98rem}
+
+/* schematic panel */
+.schem{background:var(--ink);color:#EDEEF0;border-radius:18px;overflow:hidden;border:1px solid #000;box-shadow:0 30px 80px -20px rgba(17,18,20,.45);position:relative}
+.schem-top{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line-dark);font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;color:#9AA0A8}
+.schem-top .lights{display:flex;gap:6px}
+.schem-top .lights i{width:10px;height:10px;border-radius:50%;background:#34393F;display:block}
+.schem-top .lights i:first-child{background:var(--accent)}
+.schem-body{position:relative;padding:10px 10px 0}
+.schem-body svg{width:100%;height:auto;border-radius:10px;background:
+  linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px),
+  #171A1E;
+  background-size:22px 22px,22px 22px,auto}
+.schem-foot{display:flex;justify-content:space-between;align-items:center;padding:12px 18px 14px;font-family:var(--font-mono);font-size:.74rem;color:#9AA0A8;letter-spacing:.04em}
+.schem-foot .ok{color:#7EE2A8}
+.tick{position:absolute;width:14px;height:14px;border-color:rgba(255,255,255,.35);border-style:solid;border-width:0}
+.chip-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.chip{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.04em;border:1px solid var(--line);background:var(--paper-2);border-radius:999px;padding:8px 14px;color:#3A3E44}
+.chip b{color:var(--accent);font-weight:500}
+
+/* ticker */
+.ticker{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--paper-2)}
+.ticker-track{display:flex;gap:0;width:max-content;animation:tick 32s linear infinite;padding:13px 0}
+.ticker span{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.16em;color:var(--muted);padding:0 28px;white-space:nowrap}
+.ticker span i{color:var(--accent);font-style:normal;margin-right:28px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============ SECTIONS ============ */
+.sec{padding:110px 0}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.sticky{position:sticky;top:100px}
+.sec h2{font-size:clamp(2rem,3.8vw,3.1rem);margin-bottom:16px}
+.focus{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-top:32px}
+.focus div{background:var(--paper-2);padding:24px 22px;transition:background .25s}
+.focus div:hover{background:#fff}
+.focus b{font-family:var(--font-mono);font-size:.72rem;color:var(--accent);letter-spacing:.12em;display:block;margin-bottom:10px}
+.focus h3{font-family:var(--font-display);font-size:1.08rem;letter-spacing:-.01em;margin-bottom:6px}
+.focus p{font-size:.92rem;color:var(--muted)}
+.mission{margin-top:28px;border-left:3px solid var(--ink);padding:6px 0 6px 20px}
+.mission p{font-family:var(--font-display);font-size:1.25rem;line-height:1.4;letter-spacing:-.01em}
+.mission cite{display:block;font-style:normal;font-family:var(--font-mono);font-size:.76rem;color:var(--muted);margin-top:10px;letter-spacing:.08em}
+
+/* method rows */
+.method-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:8px}
+.rows{border-top:1px solid var(--ink);margin-top:28px}
+.row{display:grid;grid-template-columns:64px 220px 1fr 40px;gap:20px;align-items:center;padding:24px 8px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .25s,padding .25s var(--ease)}
+.row:hover{background:var(--paper-2);padding-left:16px}
+.row .idx{font-family:var(--font-mono);font-size:.8rem;color:var(--muted-2)}
+.row h3{font-family:var(--font-display);font-size:1.35rem;letter-spacing:-.02em}
+.row p{color:var(--muted);font-size:.97rem;max-width:56ch}
+.row .go{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:background .25s,border-color .25s,color .25s}
+.row:hover .go{background:var(--ink);border-color:var(--ink);color:#fff}
+.process{margin-top:48px;background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px 30px 26px;position:relative;overflow:hidden}
+.process::after{content:"";position:absolute;inset:auto -40px -70px auto;width:280px;height:280px;border:1px solid rgba(255,255,255,.1);border-radius:50%}
+.process::before{content:"";position:absolute;inset:auto -10px -40px auto;width:200px;height:200px;border:1px solid rgba(255,255,255,.08);border-radius:50%}
+.process-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;position:relative;z-index:1}
+.process-head h3{font-family:var(--font-display);font-size:1.15rem}
+.process-head span{font-family:var(--font-mono);font-size:.74rem;color:#9AA0A8;letter-spacing:.1em}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative;z-index:1}
+.step{padding:0 18px 0 0;margin-right:18px;border-right:1px solid var(--line-dark)}
+.step:last-child{border:0;margin:0;padding-right:0}
+.step b{display:block;font-family:var(--font-mono);font-size:.76rem;color:var(--accent);margin-bottom:8px}
+.step h4{font-size:.95rem;margin-bottom:4px}
+.step p{font-size:.82rem;color:#9AA0A8;line-height:1.5}
+
+/* projects — dark showcase */
+.proj-sec{background:var(--ink);color:#fff;border-radius:28px;margin:0 16px;position:relative;overflow:hidden}
+.proj-sec::before{content:"RT—26";position:absolute;right:24px;top:18px;font-family:var(--font-display);font-weight:700;font-size:clamp(4rem,10vw,8rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);pointer-events:none}
+.proj-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px}
+.proj{border-top:1px solid var(--line-dark);padding:48px 0;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.proj:last-child{border-bottom:1px solid var(--line-dark)}
+.proj-visual{background:#171A1E;border:1px solid var(--line-dark);border-radius:16px;overflow:hidden;position:relative;transition:transform .4s var(--ease),border-color .3s}
+.proj:hover .proj-visual{transform:translateY(-4px);border-color:#3A4047}
+.proj-visual svg{width:100%;height:auto}
+.proj-visual .spec{display:flex;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--line-dark);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;color:#9AA0A8}
+.proj-visual .corner{position:absolute;width:16px;height:16px;border:0 solid rgba(255,255,255,.4)}
+.proj-num{font-family:var(--font-mono);font-size:.78rem;color:var(--accent);letter-spacing:.14em}
+.proj h3{font-family:var(--font-display);font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.02em;margin:12px 0 12px}
+.proj p{color:#B9BEC6;max-width:46ch}
+.tags{display:flex;gap:8px;margin:18px 0 24px;flex-wrap:wrap}
+.tags li{list-style:none;font-family:var(--font-mono);font-size:.73rem;letter-spacing:.06em;border:1px solid var(--line-dark);border-radius:999px;padding:6px 12px;color:#C9CED6}
+.link-more{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:4px;transition:border-color .2s,color .2s}
+.link-more:hover{border-color:var(--accent);color:var(--accent)}
+.proj:nth-child(even) .proj-visual{order:2}
+
+/* events */
+.events-grid{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:start}
+.ev-list{border-top:1px solid var(--ink)}
+.ev{display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:start;padding:26px 8px;border-bottom:1px solid var(--line);text-decoration:none;transition:background .25s,padding .25s}
+.ev:hover{background:var(--paper-2);padding-left:16px}
+.ev-date{font-family:var(--font-mono)}
+.ev-date b{display:block;font-size:1.5rem;font-family:var(--font-display);letter-spacing:-.02em}
+.ev-date span{font-size:.76rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.ev h3{font-family:var(--font-display);font-size:1.25rem;margin-bottom:6px}
+.ev p{color:var(--muted);font-size:.95rem;max-width:52ch}
+.ev .pill{font-family:var(--font-mono);font-size:.72rem;border:1px solid var(--line);background:var(--paper-2);padding:7px 12px;border-radius:999px;white-space:nowrap;color:#3A3E44;align-self:center}
+.side-card{border:1px solid var(--line);background:var(--paper-2);border-radius:var(--radius);padding:28px}
+.side-card h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:6px}
+.side-card p{font-size:.9rem;color:var(--muted);margin-bottom:16px}
+.act{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.act li{font-family:var(--font-mono);font-size:.75rem;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.member{background:var(--paper-2);padding:28px 24px;transition:background .25s}
+.member:hover{background:#fff}
+.avatar{width:56px;height:56px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:700;letter-spacing:.02em;margin-bottom:46px}
+.member:nth-child(2) .avatar{background:#2B2F34}
+.member:nth-child(3) .avatar{background:var(--accent)}
+.member:nth-child(4) .avatar{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.member h3{font-size:1.05rem}
+.member p{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);letter-spacing:.04em;margin-top:4px}
+.member{border-top:3px solid transparent}
+.member:hover{border-top-color:var(--accent)}
+
+/* manifesto */
+.mani{background:var(--ink);color:#fff;border-radius:28px;margin:0 16px;padding:100px 0;position:relative;overflow:hidden}
+.mani::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 70% 80% at 50% 50%,black,transparent 75%);pointer-events:none}
+.mani-inner{position:relative;text-align:left;display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.mani h2{font-size:clamp(2.2rem,4.5vw,3.6rem)}
+.mani h2 em{font-style:normal;color:var(--accent)}
+.gains{list-style:none;border-top:1px solid var(--line-dark)}
+.gains li{display:flex;gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line-dark)}
+.gains b{font-family:var(--font-mono);font-size:.76rem;color:var(--accent);flex:none}
+.gains span{font-weight:600}
+.gains small{display:block;color:#9AA0A8;font-weight:400;font-size:.9rem}
+.quote{margin-top:28px;font-family:var(--font-display);font-size:1.3rem;border-left:3px solid var(--accent);padding-left:18px}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.c-lines{margin-top:28px;border-top:1px solid var(--line)}
+.c-lines div{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);font-size:.96rem}
+.c-lines dt{font-family:var(--font-mono);font-size:.76rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;padding-top:3px}
+.c-lines dd a{font-weight:600;text-decoration:none;border-bottom:1px solid transparent}
+.c-lines dd a:hover{border-color:var(--accent);color:var(--accent-ink)}
+.socials{display:flex;gap:10px;margin-top:22px}
+.socials a{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--paper-2);transition:background .2s,border-color .2s,transform .2s}
+.socials a:hover{background:var(--ink);border-color:var(--ink);color:#fff;transform:translateY(-2px)}
+.socials svg{width:18px;height:18px}
+.form-card{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:32px;box-shadow:0 20px 60px -30px rgba(17,18,20,.25)}
+.form-card h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:6px}
+.form-card>p{font-size:.92rem;color:var(--muted);margin-bottom:22px}
+.field{margin-bottom:16px}
+label{display:block;font-size:.86rem;font-weight:600;margin-bottom:7px}
+input,textarea{width:100%;border:1px solid #CFCBC0;border-radius:10px;background:#fff;padding:13px 15px;font:inherit;font-size:.95rem;color:var(--ink);transition:border-color .2s,box-shadow .2s}
+input::placeholder,textarea::placeholder{color:#A6A9B0}
+input:focus,textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(17,18,20,.1)}
+textarea{min-height:120px;resize:vertical}
+.form-note{font-size:.83rem;color:var(--muted);margin-top:14px}
+.form-ok{display:none;background:#0F5132;color:#D6F5E3;border-radius:10px;padding:14px 16px;font-size:.9rem;margin-top:14px}
+form.sent .form-ok{display:block}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:48px 0 32px;margin-top:40px;background:var(--paper-2)}
+.foot{display:flex;justify-content:space-between;gap:32px;align-items:start;flex-wrap:wrap}
+.foot p{color:var(--muted);font-size:.92rem;max-width:38ch;margin-top:10px}
+.foot nav{display:flex;gap:56px;flex-wrap:wrap}
+.foot h4{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.12em;color:var(--muted-2);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.foot ul a{text-decoration:none;font-size:.93rem;color:#2E3238}
+.foot ul a:hover{color:var(--accent)}
+.copy{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:.76rem;color:var(--muted-2)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.ticker-track{animation:none}}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1020px){
+  .hero-grid{grid-template-columns:1fr;align-items:start}
+  .schem{max-width:640px}
+  .split,.contact-grid,.mani-inner,.events-grid{grid-template-columns:1fr;gap:40px}
+  .sticky{position:static}
+  .steps{grid-template-columns:repeat(3,1fr);gap:24px}
+  .step:nth-child(3){border:0}
+  .proj{grid-template-columns:1fr;gap:28px;padding:36px 0}
+  .proj:nth-child(even) .proj-visual{order:0}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .sec{padding:84px 0}
+  .mani{padding:72px 0}
+}
+@media (max-width:760px){
+  .nav-links,.nav .btn{display:none}
+  .menu-btn{display:inline-flex}
+  .wrap,.nav-inner{padding:0 20px}
+  .hero{padding-top:120px}
+  .row{grid-template-columns:44px 1fr 36px}
+  .row p{grid-column:2/4}
+  .row .go{grid-column:3;grid-row:1}
+  .ev{grid-template-columns:1fr;gap:10px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border:0;border-top:1px solid var(--line-dark);padding-top:16px;margin:0}
+  .proj-sec,.mani{margin:0 8px;border-radius:20px}
+  .form-card{padding:24px 20px}
+  .hero-meta{flex-wrap:wrap;gap:0}
+  .hero-meta div{padding-right:20px;margin-right:20px;margin-bottom:12px}
+}
+@media (max-width:520px){
+  .team-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hero-ctas .btn{flex:1;justify-content:center}
+  .focus{grid-template-columns:1fr}
+  .sec{padding:68px 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="RoboTech home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.2" stroke="#FF4D00" stroke-width="1.8"/><circle cx="8" cy="8" r="1.8" fill="#fff"/><path d="M8 0v3M8 13v3M0 8h3M13 8h3" stroke="#fff" stroke-width="1.4"/></svg>
+      </span>
+      ROBO<em>TECH</em>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-dark btn-sm" href="#contact">Join the Club <span class="arr" aria-hidden="true">↗</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mMenu" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="m-menu" id="mMenu" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="#about"><small>01</small> About</a></li>
+      <li><a href="#method"><small>02</small> Method</a></li>
+      <li><a href="#projects"><small>03</small> Projects</a></li>
+      <li><a href="#events"><small>04</small> Events</a></li>
+      <li><a href="#team"><small>05</small> Team</a></li>
+      <li><a href="#contact"><small>06</small> Join the Club</a></li>
+    </ul>
+  </nav>
+  <div class="m-menu-foot"><span>ROBOTECH — EST. STUDENT-LED</span><span>SYS / 2026</span></div>
+</div>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-badge"><span class="dot" aria-hidden="true"></span> STUDENT-LED ROBOTICS COMMUNITY</p>
+      <h1 id="hero-h">Build.<br />Innovate.<br /><span class="thin">Automate</span><span class="acc">.</span></h1>
+      <p class="hero-sub"><strong>A student-led community turning ideas into real machines.</strong> Explore robotics, electronics, programming and automation — by building, not just studying.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark" href="#projects">Explore Projects <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="#contact">Join the Club</a>
+      </div>
+      <div class="hero-meta" aria-label="Club facts">
+        <div><b>FOCUS</b><span>Hardware + Code</span></div>
+        <div><b>LEVEL</b><span>No experience needed</span></div>
+        <div><b>MODE</b><span>Weekly builds</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="schem" id="schem" aria-label="Stylised drive-system schematic">
+        <div class="schem-top"><span>RT-01 / DRIVE.SCHEMATIC</span><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span>LIVE</span></div>
+        <div class="schem-body">
+          <svg viewBox="0 0 520 360" role="img" aria-label="Abstract line-following robot schematic with sensor path">
+            <defs>
+              <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#FF4D00" stroke-width="1.4"/></marker>
+            </defs>
+            <!-- track -->
+            <path id="track" d="M40 280 C 110 280, 120 200, 200 200 S 320 200, 330 130 S 420 70, 480 90" fill="none" stroke="#3A4047" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+            <path d="M40 280 C 110 280, 120 200, 200 200 S 320 200, 330 130 S 420 70, 480 90" fill="none" stroke="#FF4D00" stroke-width="2.5" stroke-dasharray="10 8" marker-end="url(#ah)">
+              <animate attributeName="stroke-dashoffset" from="0" to="-72" dur="2.4s" repeatCount="indefinite"/>
+            </path>
+            <!-- nodes -->
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="#9AA0A8">
+              <circle cx="200" cy="200" r="5" fill="#fff"/><text x="214" y="204">IR-ARRAY / 5CH</text>
+              <circle cx="330" cy="130" r="5" fill="#FF4D00"/><text x="344" y="134">MOTOR.L / R</text>
+              <circle cx="120" cy="248" r="4" fill="none" stroke="#5A616B" stroke-width="1.5"/><text x="60" y="310">NODE 01</text>
+              <circle cx="430" cy="82" r="4" fill="none" stroke="#5A616B" stroke-width="1.5"/><text x="400" y="60">NODE 04</text>
+            </g>
+            <!-- chassis -->
+            <g id="bot" transform="translate(0,0)">
+              <rect x="-26" y="-18" width="52" height="36" rx="8" fill="#0E1013" stroke="#fff" stroke-width="1.5"/>
+              <circle cx="-14" cy="0" r="4" fill="#FF4D00"/><circle cx="14" cy="0" r="4" fill="#fff"/>
+              <rect x="-6" y="-26" width="12" height="8" rx="2" fill="#2A2E33" stroke="#5A616B"/>
+            </g>
+            <!-- crosshair -->
+            <g id="xh" stroke="#fff" stroke-width="1" opacity=".55">
+              <line x1="-12" y1="0" x2="12" y2="0"/><line x1="0" y1="-12" x2="0" y2="12"/><circle r="16" fill="none" opacity=".5"/>
+            </g>
+            <animateMotion href="#bot" dur="6s" repeatCount="indefinite" rotate="auto" path="M40 280 C 110 280, 120 200, 200 200 S 320 200, 330 130 S 420 70, 480 90"/>
+          </svg>
+        </div>
+        <div class="schem-foot"><span>X <span id="cx">0420</span> · Y <span id="cy">0082</span></span><span class="ok">● STATUS: NOMINAL</span></div>
+      </div>
+      <div class="chip-row" aria-label="Technologies">
+        <span class="chip"><b>●</b> ARDUINO</span>
+        <span class="chip"><b>●</b> SENSORS</span>
+        <span class="chip"><b>●</b> EMBEDDED C</span>
+        <span class="chip">SERVO CONTROL</span>
+      </div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack">
+      <span><i>●</i>AUTONOMOUS SYSTEMS</span><span><i>●</i>EMBEDDED</span><span><i>●</i>SENSORS</span><span><i>●</i>CONTROL</span><span><i>●</i>PROTOTYPING</span><span><i>●</i>TEAM BUILDS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about" aria-labelledby="about-h">
+  <div class="wrap split">
+    <div class="sticky reveal">
+      <p class="eyebrow"><span class="n">01</span> About</p>
+      <h2 id="about-h">Where ideas become machines.</h2>
+      <p class="lede">A student community built around curiosity, engineering and hands-on learning. No experience required.</p>
+    </div>
+    <div class="reveal">
+      <p style="font-size:1.08rem;max-width:60ch">RoboTech explores robotics, electronics, embedded systems, programming and automation by <strong>actually building things</strong> — from simple sensor robots to autonomous systems. We design, test, break, improve, and build again.</p>
+      <div class="focus">
+        <div><b>01</b><h3>Robotics</h3><p>Mobile robots, kinematics and autonomous behaviour.</p></div>
+        <div><b>02</b><h3>Programming</h3><p>Embedded logic, control systems and real code.</p></div>
+        <div><b>03</b><h3>Electronics</h3><p>Sensors, microcontrollers, motors and circuits.</p></div>
+        <div><b>04</b><h3>Innovation</h3><p>Emerging tech turned into working prototypes.</p></div>
+      </div>
+      <div class="mission">
+        <p>“Learn by building. Build by experimenting. Grow by solving real problems.”</p>
+        <cite>— OUR MISSION</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section class="sec" id="method" style="padding-top:0" aria-labelledby="method-h">
+  <div class="wrap">
+    <div class="method-head reveal">
+      <div>
+        <p class="eyebrow"><span class="n">02</span> What we do</p>
+        <h2 id="method-h">Learn. Build.<br />Compete. Collaborate.</h2>
+      </div>
+      <p class="lede" style="max-width:34ch">Curiosity turned into practical skill — through projects, workshops and challenges.</p>
+    </div>
+    <div class="rows reveal">
+      <a class="row" href="#projects"><span class="idx">/ 01</span><h3>Learn</h3><p>Robotics, sensors, microcontrollers and automation through hands-on sessions.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="row" href="#projects"><span class="idx">/ 02</span><h3>Build</h3><p>Working robots and prototypes that tackle real-world problems.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="row" href="#events"><span class="idx">/ 03</span><h3>Compete</h3><p>Robotics competitions, hackathons and inter-college challenges.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="row" href="#team"><span class="idx">/ 04</span><h3>Collaborate</h3><p>Different backgrounds, shared benches, better solutions together.</p><span class="go" aria-hidden="true">→</span></a>
+      <a class="row" href="#contact"><span class="idx">/ 05</span><h3>Innovate</h3><p>Experiment with emerging tech and ship functional prototypes.</p><span class="go" aria-hidden="true">→</span></a>
+    </div>
+    <div class="process reveal">
+      <div class="process-head"><h3>From idea → working machine</h3><span>HOW WE BUILD / 6 STEPS</span></div>
+      <div class="steps">
+        <div class="step"><b>01</b><h4>Ideate</h4><p>Find a problem. Explore solutions.</p></div>
+        <div class="step"><b>02</b><h4>Design</h4><p>Hardware, mechanics &amp; software.</p></div>
+        <div class="step"><b>03</b><h4>Build</h4><p>Turn drawings into prototype.</p></div>
+        <div class="step"><b>04</b><h4>Program</h4><p>Logic and control systems.</p></div>
+        <div class="step"><b>05</b><h4>Test</h4><p>Real conditions. Find breaks.</p></div>
+        <div class="step"><b>06</b><h4>Improve</h4><p>Fix, refine, repeat.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" aria-labelledby="proj-h" style="scroll-margin-top:40px">
+<div class="proj-sec on-dark">
+  <div class="wrap sec">
+    <div class="proj-head reveal">
+      <div>
+        <p class="eyebrow"><span class="n">03</span> Projects</p>
+        <h2 id="proj-h">Built by students.<br />Driven by problems.</h2>
+      </div>
+      <p class="lede">Every project is an experiment that has to work — not a demo that only renders.</p>
+    </div>
+
+    <article class="proj reveal">
+      <div class="proj-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 300" fill="none">
+          <rect width="480" height="300" fill="#171A1E"/>
+          <g stroke="rgba(255,255,255,.07)"><path d="M0 60H480M0 120H480M0 180H480M0 240H480M80 0V300M160 0V300M240 0V300M320 0V300M400 0V300"/></g>
+          <path d="M30 230 C 120 230, 140 150, 230 150 S 340 150, 360 90" stroke="#3E454D" stroke-width="12" stroke-linecap="round"/>
+          <path d="M30 230 C 120 230, 140 150, 230 150 S 340 150, 360 90" stroke="#FF4D00" stroke-width="2.5" stroke-dasharray="9 7"/>
+          <rect x="200" y="128" width="64" height="44" rx="9" fill="#0E1013" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="214" cy="150" r="5" fill="#FF4D00"/><circle cx="250" cy="150" r="5" fill="#fff"/>
+          <circle cx="360" cy="90" r="6" fill="none" stroke="#fff" stroke-width="1.5"/><circle cx="360" cy="90" r="2" fill="#FF4D00"/>
+        </svg>
+        <div class="spec"><span>LINE.TRACK / IR-5CH</span><span>FIG. 01</span></div>
+      </div>
+      <div>
+        <p class="proj-num">P — 01</p>
+        <h3>Line Following Robot</h3>
+        <p>An autonomous robot that uses infrared sensors to detect a path and adjust movement in real time.</p>
+        <ul class="tags"><li>IR SENSORS</li><li>PID CONTROL</li><li>ARDUINO</li></ul>
+        <a class="link-more" href="#contact">View Project <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <div class="proj-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 300" fill="none">
+          <rect width="480" height="300" fill="#171A1E"/>
+          <g stroke="rgba(255,255,255,.07)"><path d="M0 60H480M0 120H480M0 180H480M0 240H480M80 0V300M160 0V300M240 0V300M320 0V300M400 0V300"/></g>
+          <circle cx="240" cy="170" r="70" stroke="#3E454D" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <circle cx="240" cy="170" r="44" stroke="#3E454D" stroke-width="1.5"/>
+          <line x1="240" y1="170" x2="310" y2="110" stroke="#FF4D00" stroke-width="2"/>
+          <line x1="240" y1="170" x2="180" y2="110" stroke="#fff" stroke-width="1.5" opacity=".7"/>
+          <rect x="96" y="120" width="34" height="50" rx="6" fill="#0E1013" stroke="#5A616B"/>
+          <rect x="350" y="200" width="34" height="50" rx="6" fill="#0E1013" stroke="#5A616B"/>
+          <rect x="216" y="148" width="48" height="44" rx="9" fill="#0E1013" stroke="#fff" stroke-width="1.5"/>
+          <circle cx="240" cy="170" r="5" fill="#FF4D00"/>
+        </svg>
+        <div class="spec"><span>NAV.SCAN / ULTRASONIC</span><span>FIG. 02</span></div>
+      </div>
+      <div>
+        <p class="proj-num">P — 02</p>
+        <h3>Obstacle Avoiding Robot</h3>
+        <p>A mobile robot that senses obstacles and makes navigation decisions in real time.</p>
+        <ul class="tags"><li>ULTRASONIC</li><li>NAV LOGIC</li><li>MOTOR DRIVER</li></ul>
+        <a class="link-more" href="#contact">View Project <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+
+    <article class="proj reveal">
+      <div class="proj-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 300" fill="none">
+          <rect width="480" height="300" fill="#171A1E"/>
+          <g stroke="rgba(255,255,255,.07)"><path d="M0 60H480M0 120H480M0 180H480M0 240H480M80 0V300M160 0V300M240 0V300M320 0V300M400 0V300"/></g>
+          <rect x="140" y="230" width="200" height="14" rx="4" fill="#2A2E33" stroke="#5A616B"/>
+          <circle cx="240" cy="230" r="14" fill="#0E1013" stroke="#fff" stroke-width="1.5"/><circle cx="240" cy="230" r="4" fill="#FF4D00"/>
+          <line x1="240" y1="224" x2="300" y2="150" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+          <line x1="300" y1="150" x2="352" y2="170" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="240" cy="228" r="5" fill="#FF4D00"/><circle cx="300" cy="150" r="5" fill="#fff" stroke="#FF4D00" stroke-width="2"/>
+          <rect x="340" y="158" width="28" height="22" rx="5" fill="#0E1013" stroke="#fff"/>
+          <path d="M120 80h60M150 65v30" stroke="rgba(255,255,255,.3)"/>
+        </svg>
+        <div class="spec"><span>ARM.KINEMATICS / 4-DOF</span><span>FIG. 03</span></div>
+      </div>
+      <div>
+        <p class="proj-num">P — 03</p>
+        <h3>Robotic Arm</h3>
+        <p>A servo-controlled arm built to explore automated movement, object handling and pick-and-place operations.</p>
+        <ul class="tags"><li>SERVOS</li><li>PWM</li><li>PICK &amp; PLACE</li></ul>
+        <a class="link-more" href="#contact">View Project <span aria-hidden="true">→</span></a>
+      </div>
+    </article>
+  </div>
+</div>
+</section>
+
+<!-- EVENTS -->
+<section class="sec" id="events" aria-labelledby="ev-h">
+  <div class="wrap">
+    <div class="method-head reveal">
+      <div>
+        <p class="eyebrow"><span class="n">04</span> Events</p>
+        <h2 id="ev-h">Learn. Compete.<br />Showcase.</h2>
+      </div>
+      <p class="lede" style="max-width:34ch">Workshops, competitions and exhibitions throughout the year. Compact by design.</p>
+    </div>
+    <div class="events-grid" style="margin-top:28px">
+      <div class="ev-list reveal">
+        <a class="ev" href="#contact"><div class="ev-date"><b>15</b><span>Oct 2026</span></div><div><h3>Robotics Workshop</h3><p>Beginner-friendly intro to Arduino, sensors, motors, circuits — and your first robot.</p></div><span class="pill">WORKSHOP</span></a>
+        <a class="ev" href="#contact"><div class="ev-date"><b>08</b><span>Nov 2026</span></div><div><h3>Robo Race</h3><p>Design and program an autonomous robot. Navigate the track as efficiently as possible.</p></div><span class="pill">COMPETITION</span></a>
+        <a class="ev" href="#contact"><div class="ev-date"><b>20</b><span>Dec 2026</span></div><div><h3>Tech Exhibition</h3><p>Student-built robots, automation systems and prototypes, open to everyone.</p></div><span class="pill">SHOWCASE</span></a>
+      </div>
+      <aside class="side-card reveal" aria-label="Weekly activities">
+        <h3>Always something to build.</h3>
+        <p>Weekly rhythm that keeps projects moving.</p>
+        <ul class="act">
+          <li>Weekly sessions</li><li>Hardware workshops</li><li>Programming</li><li>Project dev</li><li>Competitions</li><li>Demos</li><li>Peer learning</li><li>Challenges</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec" id="team" style="padding-top:0" aria-labelledby="team-h">
+  <div class="wrap">
+    <div class="method-head reveal">
+      <div>
+        <p class="eyebrow"><span class="n">05</span> Team</p>
+        <h2 id="team-h">The people behind<br />the builds.</h2>
+      </div>
+      <p class="lede" style="max-width:34ch">Different skills. One team. Leadership that keeps projects, workshops and sessions moving.</p>
+    </div>
+    <div class="team-grid reveal" style="margin-top:28px">
+      <div class="member"><div class="avatar" aria-hidden="true">AS</div><h3>Alex Smith</h3><p>PRESIDENT</p></div>
+      <div class="member"><div class="avatar" aria-hidden="true">JP</div><h3>Jordan Patel</h3><p>TECHNICAL LEAD</p></div>
+      <div class="member"><div class="avatar" aria-hidden="true">SR</div><h3>Sam Rivera</h3><p>PROGRAMMING LEAD</p></div>
+      <div class="member"><div class="avatar" aria-hidden="true">MK</div><h3>Maya Kim</h3><p>EVENTS COORDINATOR</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section aria-label="Why join RoboTech" style="scroll-margin-top:40px">
+<div class="mani on-dark">
+  <div class="wrap mani-inner">
+    <div class="reveal">
+      <p class="eyebrow"><span class="n">06</span> Why join</p>
+      <h2>More than building <em>robots.</em></h2>
+      <p class="lede" style="margin-top:16px">Real hardware. Real code. Real systems. Learn to tackle complex problems, work in teams, and turn failures into better solutions — whether you love engineering, programming, AI, electronics, design, or just building things.</p>
+      <p class="quote">Ideas shouldn't stay on paper. Build boldly. Learn constantly.</p>
+    </div>
+    <ul class="gains reveal">
+      <li><b>01</b><div><span>Hands-on experience</span><small>Ship working prototypes, not just tutorials.</small></div></li>
+      <li><b>02</b><div><span>Technical skills</span><small>Embedded, electronics, control and automation.</small></div></li>
+      <li><b>03</b><div><span>Teamwork &amp; leadership</span><small>Own parts of real builds with real deadlines.</small></div></li>
+      <li><b>04</b><div><span>Competition experience</span><small>Races, hackathons and exhibitions.</small></div></li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact" aria-labelledby="ct-h">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <p class="eyebrow"><span class="n">07</span> Contact</p>
+      <h2 id="ct-h">Build something real.</h2>
+      <p class="lede" style="margin-top:14px">Have a question, an idea, or just curious? <strong style="color:var(--ink)">You don't need prior experience.</strong> Programming, electronics, mechanical, AI, automation or project management — there's a place for you.</p>
+      <dl class="c-lines">
+        <div><dt>Email</dt><dd><a href="mailto:roboticsclub@university.edu">roboticsclub@university.edu</a></dd></div>
+        <div><dt>Lab</dt><dd>Engineering Building, Room 204</dd></div>
+      </dl>
+      <div class="socials" aria-label="Social links">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.2l7.3-8.3L1.6 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7 3.9H5.2L17.8 20z"/></svg></a>
+        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.35 1.08 2.92.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5v5l4.5-2.5z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <h3>Join the Club</h3>
+      <p>Tell us what you're into. We'll reply with meeting times and how to get involved.</p>
+      <form id="joinForm" novalidate>
+        <div class="field"><label for="fName">Name</label><input id="fName" name="name" type="text" placeholder="Your name" autocomplete="name" required /></div>
+        <div class="field"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+        <div class="field"><label for="fMsg">Message</label><textarea id="fMsg" name="message" placeholder="Tell us what you're interested in..." required></textarea></div>
+        <button class="btn btn-dark" type="submit" style="width:100%">Join the Club <span class="arr" aria-hidden="true">→</span></button>
+        <p class="form-ok" role="status">Thanks — you're on the list. We'll be in touch soon.</p>
+        <p class="form-note">We'll get back to you with details about upcoming meetings and ways to get involved.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" aria-label="Back to top">ROBO<em>TECH</em></a>
+        <p>Building the next generation of engineers through robotics, experimentation and collaboration.</p>
+      </div>
+      <nav aria-label="Footer">
+        <div><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#events">Events</a></li></ul></div>
+        <div><h4>Club</h4><ul><li><a href="#team">Team</a></li><li><a href="#contact">Contact</a></li><li><a href="#method">Method</a></li></ul></div>
+        <div><h4>Elsewhere</h4><ul><li><a href="#">GitHub</a></li><li><a href="#">Documentation</a></li><li><a href="mailto:roboticsclub@university.edu">Email</a></li></ul></div>
+      </nav>
+    </div>
+    <div class="copy"><span>© <span id="yr">2026</span> RoboTech Robotics Club. All rights reserved.</span><span>DESIGNED + BUILT BY MEMBERS</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 24); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mMenu');
+  var links = menu.querySelectorAll('a');
+  function setMenu(open){
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    if(open){ links.forEach(function(a,i){ a.style.transitionDelay = (60+i*55)+'ms'; }); }
+    else{ links.forEach(function(a){ a.style.transitionDelay='0ms'; }); }
+  }
+  btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded')!=='true'); });
+  links.forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && menu.classList.contains('open')){ setMenu(false); btn.focus(); } });
+
+  // Scroll reveal
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){ els.forEach(function(el){ el.classList.add('in'); }); }
+  else{
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  // Active nav
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var secs = ['about','method','projects','events','team'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+en.target.id); });
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){ spy.observe(s); });
+  }
+
+  // Hero readout follows pointer (subtle, disabled on touch / reduced motion)
+  var schem = document.getElementById('schem'), cx = document.getElementById('cx'), cy = document.getElementById('cy');
+  var xh = document.getElementById('xh');
+  if(schem && !reduce && window.matchMedia('(pointer:fine)').matches){
+    var svg = schem.querySelector('svg');
+    schem.addEventListener('pointermove', function(e){
+      var r = svg.getBoundingClientRect();
+      var px = (e.clientX - r.left)/r.width*520, py = (e.clientY - r.top)/r.height*360;
+      if(xh) xh.setAttribute('transform','translate('+px.toFixed(0)+','+py.toFixed(0)+')');
+      if(cx) cx.textContent = String(Math.round(px)).padStart(4,'0');
+      if(cy) cy.textContent = String(Math.round(py)).padStart(4,'0');
+    });
+  }
+
+  // Duplicate ticker for seamless loop
+  var track = document.getElementById('tickerTrack');
+  if(track){ track.innerHTML += track.innerHTML; }
+
+  // Year + form
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var form = document.getElementById('joinForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    form.classList.add('sent');
+    form.querySelector('.form-ok').focus && form.querySelector('.form-ok').setAttribute('tabindex','-1');
+  });
+})();
+</script>
+</body>
+</html>

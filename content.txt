@@ -1,0 +1,293 @@
+# ROBO<span>TECH</span>
+
+## Navigation
+
+* Home
+* About
+* Projects
+* Events
+* Team
+* Contact
+
+---
+
+# Hero
+
+### Build. Innovate. Automate.
+
+**A student-led robotics community turning ideas into real-world machines.**
+
+Explore robotics, electronics, programming, and automation through hands-on projects, experiments, and teamwork.
+
+**Primary CTA:** Explore Projects
+**Secondary CTA:** Join the Club
+
+---
+
+# About
+
+### Where ideas become machines.
+
+RoboTech is a student-led community built around curiosity, engineering, and hands-on learning.
+
+We explore robotics, electronics, embedded systems, programming, automation, and emerging technologies by actually building things.
+
+From simple sensor-based robots to autonomous systems, members learn by designing, testing, breaking, improving, and building again.
+
+**No experience required.** Start with the basics, contribute to ongoing projects, or take on something ambitious.
+
+### Our Mission
+
+**Learn by building. Build by experimenting. Grow by solving real problems.**
+
+We create a space where students develop technical skills, creativity, leadership, and problem-solving through robotics.
+
+### Focus Areas
+
+* Robotics
+* Programming
+* Electronics
+* Innovation
+
+---
+
+# What We Do
+
+### Learn. Build. Compete. Collaborate.
+
+We turn curiosity into practical skills through projects, workshops, and challenges.
+
+### Learn
+
+Master robotics, electronics, sensors, microcontrollers, programming, and automation through hands-on sessions.
+
+### Build
+
+Design and build working robots and prototypes that tackle real-world problems.
+
+### Compete
+
+Prepare for robotics competitions, hackathons, technical challenges, and inter-college events.
+
+### Collaborate
+
+Work with people from different backgrounds, share ideas, and solve problems together.
+
+### Innovate
+
+Experiment with emerging technologies and turn creative concepts into functional prototypes.
+
+---
+
+# How We Build
+
+### From idea to working machine.
+
+Every project follows a simple cycle:
+
+**01 — Ideate**
+Find a problem. Explore possible solutions.
+
+**02 — Design**
+Plan the hardware, mechanics, electronics, and software.
+
+**03 — Build**
+Turn the design into a working prototype.
+
+**04 — Program**
+Develop the logic and control systems.
+
+**05 — Test**
+Put it through real-world conditions. Find what breaks.
+
+**06 — Improve**
+Fix, refine, repeat.
+
+---
+
+# Projects
+
+### Built by students. Driven by problems.
+
+Every project is an opportunity to experiment, learn, and create something that works.
+
+### Line Following Robot
+
+An autonomous robot that uses infrared sensors to detect a path and adjust its movement in real time.
+
+**CTA:** View Project
+
+### Obstacle Avoiding Robot
+
+A mobile robot that senses obstacles and makes navigation decisions in real time.
+
+**CTA:** View Project
+
+### Robotic Arm
+
+A servo-controlled arm built to explore automated movement, object handling, and pick-and-place operations.
+
+**CTA:** View Project
+
+---
+
+# Why Join
+
+### More than building robots.
+
+RoboTech is a place to build skills that go beyond the classroom.
+
+Work with real hardware. Write real code. Build real systems. Learn how to approach complex problems, work in teams, communicate ideas, and turn failures into better solutions.
+
+Whether you're into engineering, programming, AI, electronics, design, or simply love building things — **there's a place for you here.**
+
+### What You'll Gain
+
+* Hands-on experience
+* Technical skills
+* Teamwork & leadership
+* Competition experience
+
+---
+
+# Events
+
+### Learn. Compete. Showcase.
+
+Workshops, competitions, demonstrations, and exhibitions throughout the year.
+
+### Oct 15, 2026
+
+**Robotics Workshop**
+
+A beginner-friendly introduction to Arduino, sensors, motors, circuits, and building your first robot.
+
+### Nov 8, 2026
+
+**Robo Race**
+
+Design and program an autonomous robot. Navigate the track, overcome obstacles, and finish as efficiently as possible.
+
+### Dec 20, 2026
+
+**Tech Exhibition**
+
+Explore student-built robots, automation systems, prototypes, and technology solutions.
+
+---
+
+# Activities
+
+### Always something to build.
+
+* Weekly robotics sessions
+* Hardware workshops
+* Programming sessions
+* Project development
+* Robotics competitions
+* Technical demonstrations
+* Peer learning
+* Innovation challenges
+
+---
+
+# Team
+
+### The people behind the builds.
+
+Different skills. One team.
+
+Our leadership coordinates projects, workshops, competitions, and learning sessions while giving every member the opportunity to contribute.
+
+### Alex Smith
+
+**President**
+
+### Jordan Patel
+
+**Technical Lead**
+
+### Sam Rivera
+
+**Programming Lead**
+
+### Maya Kim
+
+**Events Coordinator**
+
+---
+
+# Vision
+
+### Build boldly. Learn constantly.
+
+We want to create a community where students can think creatively, experiment freely, and solve meaningful problems with technology.
+
+**Ideas shouldn't stay on paper.**
+
+They should be designed, built, tested, and turned into something real.
+
+---
+
+# Contact
+
+### Ready to build something?
+
+Have a question, an idea, or simply curious about robotics?
+
+**You don't need prior experience.**
+
+Whether you're interested in programming, electronics, mechanical design, AI, automation, or project management, you can learn and contribute.
+
+### Contact
+
+**[roboticsclub@university.edu](mailto:roboticsclub@university.edu)**
+
+**Engineering Building, Room 204**
+
+### Form
+
+**Name**
+Placeholder: Your name
+
+**Email**
+Placeholder: [you@example.com](mailto:you@example.com)
+
+**Message**
+Placeholder: Tell us what you're interested in...
+
+**CTA:** Join the Club
+
+**Form note:** We'll get back to you with details about upcoming meetings and ways to get involved.
+
+### Social
+
+* Instagram
+* Twitter / X
+* GitHub
+* YouTube
+
+---
+
+# Footer
+
+### ROBO<span>TECH</span>
+
+**Building the next generation of engineers through robotics, experimentation, and collaboration.**
+
+### Quick Links
+
+* Home
+* About
+* Projects
+* Events
+* Why Join
+
+### Resources
+
+* Team
+* Contact
+* Documentation
+* GitHub
+
+**© 2026 RoboTech Robotics Club. All rights reserved.**
